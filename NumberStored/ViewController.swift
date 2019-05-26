@@ -9,12 +9,32 @@
 import UIKit
 
 class ViewController: UIViewController {
+    
+    @IBOutlet weak var number: UITextField!
+    @IBOutlet weak var status: UILabel!
+    @IBAction func store(_ sender: Any) {
+        
+        if let n = number.text {
+            UserDefaults.standard.set(n, forKey: "number")
+        }
+        
+        checkStored()
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        checkStored()
     }
-
-
+    
+    func checkStored() {
+        
+        let nStoredObject = UserDefaults.standard.object(forKey: "number")
+        
+        if let nStored = nStoredObject as? String {
+            status.text = "The value stored is \(nStored)"
+        } else {
+            status.text = "No value stored"
+        }
+    }
 }
 
