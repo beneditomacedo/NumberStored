@@ -19,8 +19,16 @@ class ViewController: UIViewController {
         }
         
         checkStored()
+        number.text = ""
     }
 
+    @IBAction func remove(_ sender: Any) {
+        
+        UserDefaults.standard.removeObject(forKey: "number")
+        
+        checkStored()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         checkStored()
